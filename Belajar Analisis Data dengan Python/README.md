@@ -103,6 +103,7 @@ air-quality-project/
 #### 2. Launch the Dashboard
 - Start the Streamlit app:
   ```bash
+  cd Dashboard/
   streamlit run dashboard.py
   ```
 - Open your browser at `http://localhost:8501`.
