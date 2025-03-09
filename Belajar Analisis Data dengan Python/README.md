@@ -48,6 +48,9 @@ Welcome to the **Air Quality Dashboard & Analysis Project**! This project dives 
 2. **What is the relationship between temperature and PM2.5 levels?**  
    *Understanding environmental impacts on pollution.*
 
+### Advanced Analysis
+- Using **binning** to group PM2.5 levels into categories (low, medium, high) and analyze their distribution.
+
 ---
 
 ## 📂 Repository Structure
