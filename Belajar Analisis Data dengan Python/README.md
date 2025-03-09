@@ -114,7 +114,8 @@ air-quality-project/
 ### Temperature vs PM2.5
 ![Scatter Plot](Assets/visual2.png)
 
-
+### Advanced Analysis (Binning)
+![Advanced Analysis](Assets/visual3lanjutan.png)
 
 ---
 
