@@ -1,115 +1,62 @@
-# -*- coding: utf-8 -*-
-"""Proyek Analisis Data: Air Quality Dataset
-
-# Proyek Analisis Data: Air Quality Dataset
-- **Nama:** Muhammad Alif
-- **Email:** m.alif7890@gmail.com
-- **ID Dicoding:** miezlearning
-"""
-
-# Import Semua Packages/Library yang Digunakan
+# dashboard.py
+import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
 
-"""## Menentukan Pertanyaan Bisnis
+# Judul dashboard
+st.title("🌬️ Dashboard Kualitas Udara Aotizhongxin")
 
-1. Bagaimana tren kualitas udara (PM2.5) di Aotizhongxin dari tahun 2013 hingga 2017?
-2. Apa hubungan antara suhu (TEMP) dan konsentrasi PM2.5 di Aotizhongxin?
-"""
-
-"""## Data Wrangling"""
-
-"""### Gathering Data"""
-# Membaca data CSV
+# Membaca data
 df = pd.read_csv('../Dataset/PRSA_Data_Aotizhongxin_20130301-20170228.csv')  # Ganti dengan nama file CSV Anda
 
-# Menampilkan 5 baris pertama
-print("5 baris pertama dataset:")
-print(df.head())
-
-"""**Insight:**
-- Dataset berisi pengukuran kualitas udara per jam
-- Terdapat berbagai parameter seperti PM2.5, PM10, SO2, NO2, CO, O3, dan faktor cuaca
-"""
-
-"""### Assessing Data"""
-# Memeriksa info dataset
-print("\nInfo dataset:")
-print(df.info())
-
-# Memeriksa missing values
-print("\nMissing values:")
-print(df.isnull().sum())
-
-"""**Insight:**
-- Terdapat beberapa missing values pada kolom seperti SO2, NO2, dll
-- Tipe data perlu diperiksa dan mungkin perlu konversi
-"""
-
-"""### Cleaning Data"""
-# Mengisi missing values dengan median untuk kolom numerik
+# Preprocessing
+df['datetime'] = pd.to_datetime(df[['year', 'month', 'day', 'hour']])
+df_aoti = df[df['station'] == 'Aotizhongxin'].copy()  # Gunakan .copy() untuk menghindari SettingWithCopyWarning
 numeric_columns = ['PM2.5', 'PM10', 'SO2', 'NO2', 'CO', 'O3', 'TEMP']
 for column in numeric_columns:
-    df[column].fillna(df[column].median(), inplace=True)
+    df_aoti[column] = df_aoti[column].fillna(df_aoti[column].median())
 
-# Mengubah kolom tanggal menjadi datetime
-df['datetime'] = pd.to_datetime(df[['year', 'month', 'day', 'hour']])
+# Sidebar untuk filter tahun
+st.sidebar.header("Filter Data")
+years = df_aoti['year'].unique()
+selected_year = st.sidebar.multiselect("Pilih Tahun", options=years, default=years)
 
-# Memfilter hanya data dari Aotizhongxin
-df_aoti = df[df['station'] == 'Aotizhongxin']
+# Filter data berdasarkan tahun
+filtered_df = df_aoti[df_aoti['year'].isin(selected_year)]
 
-"""**Insight:**
-- Missing values telah diisi dengan median
-- Data telah diformat menjadi datetime untuk analisis waktu
-"""
+# Visualisasi 1: Tren PM2.5
+st.subheader("Tren Rata-rata Tahunan PM2.5")
+yearly_pm25 = filtered_df.groupby('year')['PM2.5'].mean()
+fig1, ax1 = plt.subplots(figsize=(10, 6))
+yearly_pm25.plot(kind='line', marker='o', ax=ax1)
+ax1.set_title('Tren Rata-rata Tahunan PM2.5')
+ax1.set_xlabel('Tahun')
+ax1.set_ylabel('Konsentrasi PM2.5 (μg/m³)')
+ax1.grid(True)
+st.pyplot(fig1)
 
-"""## Exploratory Data Analysis (EDA)"""
+# Visualisasi 2: Scatter Plot Suhu vs PM2.5
+st.subheader("Hubungan Suhu dan PM2.5")
+fig2, ax2 = plt.subplots(figsize=(10, 6))
+ax2.scatter(filtered_df['TEMP'], filtered_df['PM2.5'], alpha=0.1)
+ax2.set_title('Hubungan antara Suhu dan PM2.5')
+ax2.set_xlabel('Suhu (°C)')
+ax2.set_ylabel('Konsentrasi PM2.5 (μg/m³)')
+ax2.grid(True)
+st.pyplot(fig2)
 
-# Statistik deskriptif
-print("\nStatistik Deskriptif:")
-print(df_aoti[['PM2.5', 'TEMP']].describe())
+# Menampilkan korelasi
+correlation = filtered_df['TEMP'].corr(filtered_df['PM2.5'])
+st.write(f"**Korelasi antara Suhu dan PM2.5:** {correlation:.2f}")
 
-# Rata-rata tahunan PM2.5
-yearly_pm25 = df_aoti.groupby('year')['PM2.5'].mean()
+# Menampilkan data jika dipilih
+if st.checkbox("Tampilkan Data Mentah"):
+    st.write("### Data Terfilter")
+    st.dataframe(filtered_df)
 
-"""**Insight:**
-- Rata-rata PM2.5 menunjukkan variasi antar tahun
-- Suhu memiliki rentang dari sangat dingin hingga hangat
-"""
-
-"""## Visualization & Explanatory Analysis"""
-
-"""### Pertanyaan 1: Tren Kualitas Udara (PM2.5)"""
-plt.figure(figsize=(10, 6))
-yearly_pm25.plot(kind='line', marker='o')
-plt.title('Tren Rata-rata Tahunan PM2.5 di Aotizhongxin (2013-2017)')
-plt.xlabel('Tahun')
-plt.ylabel('Konsentrasi PM2.5 (μg/m³)')
-plt.grid(True)
-plt.show()
-
-"""### Pertanyaan 2: Hubungan Suhu dan PM2.5"""
-plt.figure(figsize=(10, 6))
-plt.scatter(df_aoti['TEMP'], df_aoti['PM2.5'], alpha=0.1)
-plt.title('Hubungan antara Suhu dan PM2.5')
-plt.xlabel('Suhu (°C)')
-plt.ylabel('Konsentrasi PM2.5 (μg/m³)')
-plt.grid(True)
-plt.show()
-
-# Menghitung korelasi
-correlation = df_aoti['TEMP'].corr(df_aoti['PM2.5'])
-print(f"Korelasi antara TEMP dan PM2.5: {correlation:.2f}")
-
-"""**Insight:**
-- Pertanyaan 1: Terdapat tren fluktuasi PM2.5 dari tahun ke tahun
-- Pertanyaan 2: Terdapat korelasi negatif lemah antara suhu dan PM2.5
-"""
-
-"""## Conclusion
-
-- Conclusion pertanyaan 1: Konsentrasi PM2.5 di Aotizhongxin menunjukkan fluktuasi tahunan dengan beberapa tahun memiliki polusi yang lebih tinggi dibandingkan tahun lainnya.
-- Conclusion pertanyaan 2: Terdapat korelasi negatif lemah antara suhu dan PM2.5, yang menunjukkan bahwa suhu yang lebih rendah cenderung berkorelasi dengan konsentrasi PM2.5 yang lebih tinggi, meskipun hubungannya tidak terlalu kuat.
-"""
+# Tambahan: Statistik sederhana
+st.subheader("Statistik Singkat")
+st.write("Rata-rata PM2.5: {:.2f} μg/m³".format(filtered_df['PM2.5'].mean()))
+st.write("Suhu Minimum: {:.2f} °C".format(filtered_df['TEMP'].min()))
+st.write("Suhu Maksimum: {:.2f} °C".format(filtered_df['TEMP'].max()))
