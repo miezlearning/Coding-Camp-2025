@@ -118,7 +118,10 @@ air-quality-project/
 ![Advanced Analysis](Assets/visual3lanjutan.png)
 
 ---
+## 📊 Dashboard Streamlit Preview
 
+![Dashboard](Assets/dashboard.jpeg)
+---
 ## ✨ Key Insights
 
 - **Trend Analysis**: PM2.5 levels show yearly fluctuations, with some years indicating higher pollution.
@@ -146,6 +149,8 @@ Contributions are welcome! Here’s how you can help:
 Feel free to reach out for questions or collaboration!
 
 ---
+
+
 
 ## 📜 License
 
