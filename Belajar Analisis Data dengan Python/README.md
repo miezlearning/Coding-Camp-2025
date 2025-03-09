@@ -112,14 +112,31 @@ air-quality-project/
 
 ## 📈 Sample Visualizations
 
-### PM2.5 Yearly Trend
+### Rata-rata PM2.5 per Bulan di Aotizhongxin
 ![PM2.5 Trend](Assets/visual1.png)
 
-### Temperature vs PM2.5
+### Distribusi PM2.5 per Musim
 ![Scatter Plot](Assets/visual2.png)
 
-### Advanced Analysis (Binning)
-![Advanced Analysis](Assets/visual3lanjutan.png)
+### Matriks Korelasi PM2.5 dan Faktor Cuaca
+![Matriks](Assets/visual3.png)
+![Matriks](Assets/visual4.png)
+
+
+
+### Distribusi Kategori PM2.5
+![lanjutan1](Assets/visualanalisis_lanjutan1.png)
+
+
+
+### Suhu berdasarkan Kategori PM2.5
+![lanjutan2](Assets/visualanalisis_lanjutan2.png)
+
+
+### Rata-rata PM2.5 berdasarkan Arah Angin
+![lanjutan3](Assets/visualanalisis_lanjutan3.png)
+
+
 
 ---
 ## 📊 Dashboard Streamlit Preview
