@@ -2,7 +2,8 @@
 
 # 🌬️ Air Quality Dashboard & Analysis Project
 
-![Header Image](https://via.placeholder.com/800x200.png?text=Air+Quality+Analysis)  
+![Header Image](Assets/banner.png)  
+
 *Visualizing air quality trends for a cleaner future*
 
 ---
@@ -108,12 +109,12 @@ air-quality-project/
 ## 📈 Sample Visualizations
 
 ### PM2.5 Yearly Trend
-![PM2.5 Trend](https://via.placeholder.com/600x300.png?text=PM2.5+Yearly+Trend)
+![PM2.5 Trend](Assets/visual1.png)
 
 ### Temperature vs PM2.5
-![Scatter Plot](https://via.placeholder.com/600x300.png?text=Temperature+vs+PM2.5)
+![Scatter Plot](Assets/visual2.png)
 
-*(Note: Replace placeholder links with actual image paths after generating visuals)*
+
 
 ---
 
@@ -153,18 +154,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ⭐ *If you find this project useful, give it a star!* ⭐
 
----
-
-### Catatan untuk Anda
-- **Gambar**: Link gambar saat ini menggunakan placeholder (`via.placeholder.com`). Setelah Anda menjalankan notebook dan menghasilkan visualisasi, simpan gambar-gambar tersebut (misalnya sebagai `pm25_trend.png` dan `temp_vs_pm25.png`), lalu unggah ke repository dan perbarui link di README.
-- **Nama Repository**: Ganti `yourusername/air-quality-project` dengan URL repository GitHub Anda setelah Anda membuatnya.
-- **File Tambahan**: Buat file `requirements.txt` dengan isi berikut:
-  ```
-  pandas
-  numpy
-  matplotlib
-  seaborn
-  streamlit
-  ```
-
-Semoga README ini membuat proyek Anda terlihat profesional dan menarik di GitHub! Jika ada tambahan atau perubahan yang Anda inginkan, beri tahu saya.
