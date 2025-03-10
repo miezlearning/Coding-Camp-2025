@@ -5,14 +5,17 @@ import seaborn as sns
 import numpy as np
 import folium
 from streamlit_folium import folium_static
+import os
 
+base_dir = os.path.dirname(os.path.dirname(__file__))  # Naik ke root proyek
+logo_path = os.path.join(base_dir, "Assets", "udaralogo.png")
 
 
 # Judul Dashboard
 st.title("Dashboard Analisis Kualitas Udara di Aotizhongxin")
 
 # Sidebar
-st.sidebar.image("../Assets/udaralogo.png", caption="Analisis Kualitas Udara", use_container_width =True)  # Ganti "your_logo.png" dengan nama file logo Anda
+st.sidebar.image(logo_path, caption="Analisis Kualitas Udara", use_container_width =True)  # Ganti "your_logo.png" dengan nama file logo Anda
 st.sidebar.header("Tentang Dashboard")
 st.sidebar.markdown("""
 - **Nama:** Muhammad Alif  
