@@ -5,9 +5,7 @@ import seaborn as sns
 import numpy as np
 import folium
 from streamlit_folium import folium_static
-import os
 
-os.system("pip install -r requirements.txt")
 
 
 # Judul Dashboard
