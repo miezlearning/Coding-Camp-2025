@@ -6,11 +6,11 @@ result, _ = reviews(
     'com.mobile.legends',  
     lang='id',       
     country='id',    
-    count=50000       
+    count=22000       
 )
 
 df = pd.DataFrame(result)
 base_dir = Path.home() / 'Documents' / 'Dicoding' / 'Belajar Pengembangan Machine Learning' / 'data'
 base_dir.mkdir(parents=True, exist_ok=True)
-csv_path = base_dir / 'mobellejen.csv'
+csv_path = base_dir / 'mobellejen2.csv'
 df.to_csv(csv_path, index=False)
