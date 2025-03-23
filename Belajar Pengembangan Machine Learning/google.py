@@ -2,7 +2,7 @@ from google_play_scraper import reviews
 import pandas as pd
 from pathlib import Path
 
-app_ids = ['com.mobile.legends', 'com.shopee.id', 'com.gojek.app']  
+app_ids = ['com.mobile.legends', 'com.shopee.id', 'com.bandainamcoent.opbrww']  
 
 def scrape_reviews(app_id, count=1000):
     result, _ = reviews(
@@ -15,7 +15,7 @@ def scrape_reviews(app_id, count=1000):
 
 all_reviews = []
 for app_id in app_ids:
-    reviews_data = scrape_reviews(app_id, count=9500)  
+    reviews_data = scrape_reviews(app_id, count=8300)  
     all_reviews.extend(reviews_data)
 
 df = pd.DataFrame(all_reviews)
