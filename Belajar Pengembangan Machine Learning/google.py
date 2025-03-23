@@ -15,7 +15,7 @@ def scrape_reviews(app_id, count=1000):
 
 all_reviews = []
 for app_id in app_ids:
-    reviews_data = scrape_reviews(app_id, count=8000)  
+    reviews_data = scrape_reviews(app_id, count=9500)  
     all_reviews.extend(reviews_data)
 
 df = pd.DataFrame(all_reviews)
