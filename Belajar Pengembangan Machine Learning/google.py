@@ -6,7 +6,7 @@ result, _ = reviews(
     'com.whatsapp',  
     lang='id',       
     country='id',    
-    count=12000       
+    count=21000       
 )
 
 df = pd.DataFrame(result)
