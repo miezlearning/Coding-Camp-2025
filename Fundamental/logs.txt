@@ -1,0 +1,137 @@
+ Dicoding  & C:/Users/Miez/AppData/Local/Programs/Python/Python313/python.exe c:/Users/Miez/Documents/Dicoding/Fundamental/main.py
+2025-05-16 13:00:05,275 - INFO - Memulai Pipeline ETL...
+2025-05-16 13:00:05,275 - INFO - --- Tahap 1: Mengekstrak Data ---
+2025-05-16 13:00:05,276 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev
+2025-05-16 13:00:05,633 - INFO - Selesai scraping halaman 1. Total produk sejauh ini: 20
+2025-05-16 13:00:05,634 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page2
+2025-05-16 13:00:05,804 - INFO - Selesai scraping halaman 2. Total produk sejauh ini: 40
+2025-05-16 13:00:05,809 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page3
+2025-05-16 13:00:05,982 - INFO - Selesai scraping halaman 3. Total produk sejauh ini: 60
+2025-05-16 13:00:05,986 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page4
+2025-05-16 13:00:06,152 - INFO - Selesai scraping halaman 4. Total produk sejauh ini: 80
+2025-05-16 13:00:06,157 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page5
+2025-05-16 13:00:06,341 - INFO - Selesai scraping halaman 5. Total produk sejauh ini: 100
+2025-05-16 13:00:06,342 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page6
+2025-05-16 13:00:06,498 - INFO - Selesai scraping halaman 6. Total produk sejauh ini: 120
+2025-05-16 13:00:06,503 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page7
+2025-05-16 13:00:06,667 - INFO - Selesai scraping halaman 7. Total produk sejauh ini: 140
+2025-05-16 13:00:06,667 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page8
+2025-05-16 13:00:06,829 - INFO - Selesai scraping halaman 8. Total produk sejauh ini: 160
+2025-05-16 13:00:06,844 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page9
+2025-05-16 13:00:06,998 - INFO - Selesai scraping halaman 9. Total produk sejauh ini: 180
+2025-05-16 13:00:06,998 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page10
+2025-05-16 13:00:07,149 - INFO - Selesai scraping halaman 10. Total produk sejauh ini: 200
+2025-05-16 13:00:07,150 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page11
+2025-05-16 13:00:07,308 - INFO - Selesai scraping halaman 11. Total produk sejauh ini: 220
+2025-05-16 13:00:07,310 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page12
+2025-05-16 13:00:07,526 - INFO - Selesai scraping halaman 12. Total produk sejauh ini: 240
+2025-05-16 13:00:07,539 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page13
+2025-05-16 13:00:07,711 - INFO - Selesai scraping halaman 13. Total produk sejauh ini: 260
+2025-05-16 13:00:07,713 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page14
+2025-05-16 13:00:07,877 - INFO - Selesai scraping halaman 14. Total produk sejauh ini: 280
+2025-05-16 13:00:07,878 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page15
+2025-05-16 13:00:08,049 - INFO - Selesai scraping halaman 15. Total produk sejauh ini: 300
+2025-05-16 13:00:08,050 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page16
+2025-05-16 13:00:08,262 - INFO - Selesai scraping halaman 16. Total produk sejauh ini: 320
+2025-05-16 13:00:08,262 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page17
+2025-05-16 13:00:08,438 - INFO - Selesai scraping halaman 17. Total produk sejauh ini: 340
+2025-05-16 13:00:08,438 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page18
+2025-05-16 13:00:08,596 - INFO - Selesai scraping halaman 18. Total produk sejauh ini: 360
+2025-05-16 13:00:08,597 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page19
+2025-05-16 13:00:08,755 - INFO - Selesai scraping halaman 19. Total produk sejauh ini: 380
+2025-05-16 13:00:08,755 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page20
+2025-05-16 13:00:08,899 - INFO - Selesai scraping halaman 20. Total produk sejauh ini: 400
+2025-05-16 13:00:08,899 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page21
+2025-05-16 13:00:09,053 - INFO - Selesai scraping halaman 21. Total produk sejauh ini: 420
+2025-05-16 13:00:09,053 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page22
+2025-05-16 13:00:09,224 - INFO - Selesai scraping halaman 22. Total produk sejauh ini: 440
+2025-05-16 13:00:09,224 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page23
+2025-05-16 13:00:09,374 - INFO - Selesai scraping halaman 23. Total produk sejauh ini: 460
+2025-05-16 13:00:09,375 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page24
+2025-05-16 13:00:09,530 - INFO - Selesai scraping halaman 24. Total produk sejauh ini: 480
+2025-05-16 13:00:09,530 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page25
+2025-05-16 13:00:09,683 - INFO - Selesai scraping halaman 25. Total produk sejauh ini: 500
+2025-05-16 13:00:09,683 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page26
+2025-05-16 13:00:09,833 - INFO - Selesai scraping halaman 26. Total produk sejauh ini: 520
+2025-05-16 13:00:09,834 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page27
+2025-05-16 13:00:10,010 - INFO - Selesai scraping halaman 27. Total produk sejauh ini: 540
+2025-05-16 13:00:10,010 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page28
+2025-05-16 13:00:10,168 - INFO - Selesai scraping halaman 28. Total produk sejauh ini: 560
+2025-05-16 13:00:10,168 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page29
+2025-05-16 13:00:10,354 - INFO - Selesai scraping halaman 29. Total produk sejauh ini: 580
+2025-05-16 13:00:10,354 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page30
+2025-05-16 13:00:10,508 - INFO - Selesai scraping halaman 30. Total produk sejauh ini: 600
+2025-05-16 13:00:10,508 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page31
+2025-05-16 13:00:10,652 - INFO - Selesai scraping halaman 31. Total produk sejauh ini: 620
+2025-05-16 13:00:10,652 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page32
+2025-05-16 13:00:10,793 - INFO - Selesai scraping halaman 32. Total produk sejauh ini: 640
+2025-05-16 13:00:10,793 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page33
+2025-05-16 13:00:10,955 - INFO - Selesai scraping halaman 33. Total produk sejauh ini: 660
+2025-05-16 13:00:10,955 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page34
+2025-05-16 13:00:11,105 - INFO - Selesai scraping halaman 34. Total produk sejauh ini: 680
+2025-05-16 13:00:11,105 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page35
+2025-05-16 13:00:11,251 - INFO - Selesai scraping halaman 35. Total produk sejauh ini: 700
+2025-05-16 13:00:11,251 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page36
+2025-05-16 13:00:11,399 - INFO - Selesai scraping halaman 36. Total produk sejauh ini: 720
+2025-05-16 13:00:11,399 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page37
+2025-05-16 13:00:11,544 - INFO - Selesai scraping halaman 37. Total produk sejauh ini: 740
+2025-05-16 13:00:11,544 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page38
+2025-05-16 13:00:11,702 - INFO - Selesai scraping halaman 38. Total produk sejauh ini: 760
+2025-05-16 13:00:11,703 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page39
+2025-05-16 13:00:11,865 - INFO - Selesai scraping halaman 39. Total produk sejauh ini: 780
+2025-05-16 13:00:11,865 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page40
+2025-05-16 13:00:12,015 - INFO - Selesai scraping halaman 40. Total produk sejauh ini: 800
+2025-05-16 13:00:12,016 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page41
+2025-05-16 13:00:12,182 - INFO - Selesai scraping halaman 41. Total produk sejauh ini: 820
+2025-05-16 13:00:12,182 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page42
+2025-05-16 13:00:12,348 - INFO - Selesai scraping halaman 42. Total produk sejauh ini: 840
+2025-05-16 13:00:12,348 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page43
+2025-05-16 13:00:12,528 - INFO - Selesai scraping halaman 43. Total produk sejauh ini: 860
+2025-05-16 13:00:12,528 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page44
+2025-05-16 13:00:12,675 - INFO - Selesai scraping halaman 44. Total produk sejauh ini: 880
+2025-05-16 13:00:12,675 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page45
+2025-05-16 13:00:12,821 - INFO - Selesai scraping halaman 45. Total produk sejauh ini: 900
+2025-05-16 13:00:12,821 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page46
+2025-05-16 13:00:12,979 - INFO - Selesai scraping halaman 46. Total produk sejauh ini: 920
+2025-05-16 13:00:12,979 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page47
+2025-05-16 13:00:13,125 - INFO - Selesai scraping halaman 47. Total produk sejauh ini: 940
+2025-05-16 13:00:13,126 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page48
+2025-05-16 13:00:13,301 - INFO - Selesai scraping halaman 48. Total produk sejauh ini: 960
+2025-05-16 13:00:13,301 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page49
+2025-05-16 13:00:13,453 - INFO - Selesai scraping halaman 49. Total produk sejauh ini: 980
+2025-05-16 13:00:13,454 - INFO - Melakukan scraping halaman: https://fashion-studio.dicoding.dev/page50
+2025-05-16 13:00:13,597 - INFO - Selesai scraping halaman 50. Total produk sejauh ini: 1000
+2025-05-16 13:00:13,607 - INFO - Berhasil mengekstrak 1000 catatan mentah.
+2025-05-16 13:00:13,607 - INFO - --- Tahap 2: Mentransformasi Data ---
+2025-05-16 13:00:13,607 - INFO - Memulai transformasi data...
+2025-05-16 13:00:13,650 - INFO - Menghapus 133 baris dengan nilai NaN.
+2025-05-16 13:00:13,673 - INFO - Menghapus 0 baris duplikat.
+2025-05-16 13:00:13,695 - INFO - Transformasi data selesai.
+2025-05-16 13:00:13,696 - INFO - Berhasil mentransformasi data. DataFrame hasil memiliki 867 catatan.
+2025-05-16 13:00:13,696 - INFO - Contoh data hasil transformasi:
+2025-05-16 13:00:13,696 - INFO -          Judul      Harga  Peringkat  Warna Ukuran  Gender                   timestamp
+1    T-shirt 2  1634400.0        3.9      3      M   Women  2025-05-16 13:00:05.276170
+2     Hoodie 3  7950080.0        4.8      3      L  Unisex  2025-05-16 13:00:05.276170
+3      Pants 4  7476960.0        3.3      3     XL     Men  2025-05-16 13:00:05.276170
+4  Outerwear 5  5145440.0        3.5      3    XXL   Women  2025-05-16 13:00:05.276170
+5     Jacket 6  2453920.0        3.3      3      S  Unisex  2025-05-16 13:00:05.276170
+2025-05-16 13:00:13,712 - INFO -
+Tipe data dari data hasil transformasi:
+<class 'pandas.core.frame.DataFrame'>
+Index: 867 entries, 1 to 999
+Data columns (total 7 columns):
+ #   Column     Non-Null Count  Dtype
+---  ------     --------------  -----
+ 0   Judul      867 non-null    object
+ 1   Harga      867 non-null    float64
+ 2   Peringkat  867 non-null    float64
+ 3   Warna      867 non-null    int64
+ 4   Ukuran     867 non-null    object
+ 5   Gender     867 non-null    object
+ 6   timestamp  867 non-null    object
+dtypes: float64(2), int64(1), object(4)
+memory usage: 54.2+ KB
+2025-05-16 13:00:13,727 - INFO - --- Tahap 3: Memuat Data ---
+2025-05-16 13:00:13,752 - INFO - Data berhasil dimuat ke produk.csv
+2025-05-16 13:00:13,752 - INFO - Berhasil memuat data ke CSV.
+2025-05-16 13:00:13,753 - INFO - Pipeline ETL selesai.
