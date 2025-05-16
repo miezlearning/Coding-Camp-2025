@@ -1,0 +1,11 @@
+# Menjalankan skrip ETL pipeline
+python3 main.py
+
+# Menjalankan unit test pada folder tests
+# Pastikan sudah berada di direktori submission-pemda/
+python3 -m pytest tests
+
+# Menjalankan test coverage pada folder tests
+# Pastikan sudah berada di direktori submission-pemda/
+coverage run -m pytest tests
+coverage report -m
