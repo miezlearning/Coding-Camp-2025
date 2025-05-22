@@ -241,7 +241,8 @@ weighted avg       0.84      0.84      0.84       184
 ```
 
 ### Visualisasi Confusion Matrix
-*(Lihat gambar Confusion Matrix pada Jupyter Notebook Anda yang telah dijalankan)*
+![image](https://github.com/user-attachments/assets/c8550c16-65b3-4447-a691-fa6b83f0c558)
+
 
 *   **Interpretasi:** Confusion Matrix menunjukkan:
     *   **True Positives (TP):** 91 pasien sakit berhasil diprediksi sakit.
@@ -251,7 +252,8 @@ weighted avg       0.84      0.84      0.84       184
     *   Model berhasil meminimalkan *false negatives* dan *false positives* dengan angka yang relatif kecil, menunjukkan kemampuan model yang baik dalam meminimalkan kedua jenis kesalahan.
 
 ### Visualisasi ROC Curve
-*(Lihat gambar ROC Curve pada Jupyter Notebook Anda yang telah dijalankan)*
+![image](https://github.com/user-attachments/assets/93b780a4-aa9b-4b7c-b3f5-55ef7752a0f6)
+
 
 *   **Interpretasi:** Kurva ROC berada jauh di atas garis acak, dan nilai AUC sebesar 0.8782. Ini mengindikasikan bahwa model memiliki kemampuan diskriminasi yang sangat baik dalam membedakan antara pasien dengan dan tanpa penyakit jantung di berbagai *threshold* klasifikasi. Semakin tinggi AUC, semakin baik model dalam membedakan kedua kelas tersebut.
 
