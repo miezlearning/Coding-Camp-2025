@@ -82,19 +82,37 @@ Dataset awal memiliki 1025 sampel (baris) dan 16 kolom (fitur, termasuk ID dan d
         *   Data mentah memiliki *missing values* yang direpresentasikan secara tidak standar (misalnya `'?'` atau spasi kosong `''`). Kolom `fbs` dan `exang` menjadi 100% *missing* setelah konversi awal. Kolom `ca` (66.41%), `thal` (52.83%), dan `slope` (33.59%) juga memiliki persentase *missing values* yang sangat tinggi. Nilai `0` pada `trestbps`, `chol`, dan `thalch` yang tidak valid secara medis juga diidentifikasi sebagai *missing values*.
 
     2.  **Distribusi Variabel Target:**
+
+
+         ![image](https://github.com/user-attachments/assets/dfb6773f-12c3-4344-b8ee-d6ac4969cdb0)
+
         *   Distribusi kelas target (`target`) relatif seimbang: 44.67% pasien tidak memiliki penyakit jantung (`0`) dan 55.33% memiliki penyakit jantung (`1`). Keseimbangan ini baik untuk klasifikasi, meskipun tetap relevan untuk menggunakan metrik `F1-score` dan `ROC AUC`.
         *   *(Lihat plot `countplot` distribusi target pada Jupyter Notebook untuk visualisasi)*
 
     3.  **Distribusi Fitur Numerik dan Kategorikal:**
+
+
+        ![image](https://github.com/user-attachments/assets/392abea8-42a8-4d90-b674-91f5fa26b655)
+
+        
         *   Fitur-fitur seperti `age` dan `thalch` menunjukkan distribusi yang mendekati normal. `oldpeak` menunjukkan distribusi *zero-inflated*. Kolom `chol` dan `trestbps` memiliki distribusi bervariasi.
         *   Distribusi fitur kategorikal seperti `cp` (tipe nyeri dada) dan `thal` (thalassemia) menunjukkan frekuensi masing-masing kategori, dengan `asymptomatic` dan `reversable defect` menjadi kategori paling dominan.
         *   *(Lihat plot `histplot` dan `countplot` distribusi fitur pada Jupyter Notebook untuk visualisasi)*
 
     4.  **Korelasi Antar Fitur:**
+
+        ![image](https://github.com/user-attachments/assets/961033b1-c83a-4725-9e25-74abf33cad7d)
+
+
         *   Heatmap korelasi menunjukkan bahwa `oldpeak` (0.49), `exang` (0.49), `ca` (0.52), dan `thalch` (-0.42) memiliki korelasi linear yang paling signifikan dengan variabel `target`. Fitur-fitur ini menjadi kandidat prediktor kuat.
         *   *(Lihat heatmap korelasi pada Jupyter Notebook untuk visualisasi)*
 
     5.  **Hubungan Fitur dengan Target:**
+
+
+        ![image](https://github.com/user-attachments/assets/21172a9c-6dc4-4e64-8589-352a3177d3c7)
+
+
         *   Boxplot memvisualisasikan perbedaan distribusi fitur numerik antara kedua kelompok target. Pasien dengan penyakit jantung (`target=1`) cenderung memiliki nilai `age`, `trestbps`, `chol`, dan `oldpeak` yang lebih tinggi, serta nilai `thalch` yang lebih rendah. Ini mengkonfirmasi *insight* dari korelasi dan memberikan pemahaman visual tentang perbedaan grup.
         *   *(Lihat boxplot hubungan fitur vs. target pada Jupyter Notebook untuk visualisasi)*
 
@@ -241,7 +259,8 @@ weighted avg       0.84      0.84      0.84       184
 ```
 
 ### Visualisasi Confusion Matrix
-*(Lihat gambar Confusion Matrix pada Jupyter Notebook Anda yang telah dijalankan)*
+![image](https://github.com/user-attachments/assets/c8550c16-65b3-4447-a691-fa6b83f0c558)
+
 
 *   **Interpretasi:** Confusion Matrix menunjukkan:
     *   **True Positives (TP):** 91 pasien sakit berhasil diprediksi sakit.
@@ -251,7 +270,8 @@ weighted avg       0.84      0.84      0.84       184
     *   Model berhasil meminimalkan *false negatives* dan *false positives* dengan angka yang relatif kecil, menunjukkan kemampuan model yang baik dalam meminimalkan kedua jenis kesalahan.
 
 ### Visualisasi ROC Curve
-*(Lihat gambar ROC Curve pada Jupyter Notebook Anda yang telah dijalankan)*
+![image](https://github.com/user-attachments/assets/93b780a4-aa9b-4b7c-b3f5-55ef7752a0f6)
+
 
 *   **Interpretasi:** Kurva ROC berada jauh di atas garis acak, dan nilai AUC sebesar 0.8782. Ini mengindikasikan bahwa model memiliki kemampuan diskriminasi yang sangat baik dalam membedakan antara pasien dengan dan tanpa penyakit jantung di berbagai *threshold* klasifikasi. Semakin tinggi AUC, semakin baik model dalam membedakan kedua kelas tersebut.
 
