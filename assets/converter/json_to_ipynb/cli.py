@@ -1,6 +1,6 @@
 import argparse
-from .io_utils import muat_json, simpan_notebook
-from .converter import bangun_notebook
+from json_to_ipynb.io_utils import muat_json, simpan_notebook
+from json_to_ipynb.converter import bangun_notebook
 
 def json_ke_ipynb(jalur_json: str, jalur_output: str) -> None:
     try:
@@ -12,8 +12,12 @@ def json_ke_ipynb(jalur_json: str, jalur_output: str) -> None:
         print(f"Terjadi kesalahan: {e}")
 
 def run_cli():
-    parser = argparse.ArgumentParser(description='Konversi JSON ke Jupyter Notebook (.ipynb)')
-    parser.add_argument('jalur_json', help='Path file JSON input')
+    parser = argparse.ArgumentParser(
+        description='Konversi file JSON ke Jupyter Notebook (.ipynb)',
+        usage='python -m json_to_ipynb.utama <jalur_json> <jalur_output>'
+    )
+    parser.add_argument('jalur_json', help='Path ke file JSON input')
     parser.add_argument('jalur_output', help='Path file .ipynb output')
+    
     args = parser.parse_args()
     json_ke_ipynb(args.jalur_json, args.jalur_output)
