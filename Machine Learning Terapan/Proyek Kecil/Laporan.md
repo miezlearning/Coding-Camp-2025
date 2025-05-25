@@ -1,5 +1,3 @@
-
-
 # Laporan Proyek Machine Learning - Sistem Prediksi Penyakit Jantung
 
 **Nama Anda:** Muhammad Alif  
@@ -12,7 +10,6 @@ Penyakit jantung kardiovaskular (Cardiovascular Diseases/CVDs) merupakan penyeba
 
 Dalam menghadapi tantangan ini, teknologi *machine learning* (ML) menawarkan potensi besar. Algoritma ML mampu menganalisis pola-pola kompleks dalam volume data medis yang besar, mengidentifikasi hubungan tersembunyi antar variabel, dan membuat prediksi dengan tingkat akurasi yang tinggi. Dengan memanfaatkan ML, kita dapat mengembangkan sistem pendukung keputusan yang membantu tenaga medis dalam melakukan skrining awal pada populasi berisiko tinggi dan memprediksi kemungkinan seseorang menderita penyakit jantung, sehingga memungkinkan tindakan pencegahan atau pengobatan yang lebih cepat dan tepat.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
 *   **Mengapa dan bagaimana masalah tersebut harus diselesaikan:**
     Penyakit jantung menyebabkan beban kesehatan yang masif, baik dari sisi mortalitas, morbiditas, maupun biaya perawatan. Pendekatan tradisional seringkali bergantung pada penilaian subjektif dokter dan hasil tes yang mahal/invasif. *Machine learning* dapat menyelesaikan masalah ini dengan:
     1.  **Prediksi Dini:** Mengidentifikasi individu berisiko tinggi bahkan sebelum gejala parah muncul, memungkinkan intervensi preventif.
@@ -39,11 +36,8 @@ Menjelaskan pernyataan masalah latar belakang:
 ### Goals
 
 Menjelaskan tujuan dari pernyataan masalah:
-1.  Mengembangkan model klasifikasi *machine learning* (spesifiknya, **Klasifikasi Biner**) yang mampu mengidentifikasi pasien dengan penyakit jantung (kelas positif) dan tanpa penyakit jantung (kelas negatif) dengan performa evaluasi yang optimal.
-2.  Mengidentifikasi fitur-fitur medis utama yang memiliki pengaruh paling signifikan terhadap risiko penyakit jantung berdasarkan analisis model.
-3.  Menyediakan alat prediksi yang dapat diandalkan untuk skrining awal, mendukung deteksi dini dan manajemen risiko pasien.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
+1.  Mengembangkan model klasifikasi *machine learning* (spesifiknya, **Klasifikasi Biner**) yang mampu secara akurat memprediksi keberadaan penyakit jantung pada pasien.
+2.  Mengidentifikasi fitur-fitur medis utama yang memiliki pengaruh paling signifikan terhadap risiko penyakit jantung dan menyajikan model prediksi sebagai alat bantu yang dapat diandalkan untuk skrining awal serta mendukung deteksi dini dan manajemen risiko pasien.
 
 ### Solution Statements
 Untuk mencapai tujuan proyek ini dan memastikan solusi yang *robust* serta terukur, dua pendekatan utama akan diterapkan dan dievaluasi:
@@ -52,87 +46,85 @@ Untuk mencapai tujuan proyek ini dan memastikan solusi yang *robust* serta teruk
 
 ## Data Understanding
 
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang digunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset.
-
 Dataset yang digunakan dalam proyek ini adalah `heart_disease_uci.csv`, yang merupakan kompilasi dari empat dataset penyakit jantung yang berbeda dari UCI Machine Learning Repository (Cleveland, Hungary, Switzerland, VA Long Beach). Dataset ini diunduh dari Kaggle, tersedia di: [https://www.kaggle.com/datasets/redwankarimsony/heart-disease-data](https://www.kaggle.com/datasets/redwankarimsony/heart-disease-data).
 
-Dataset awal memiliki 1025 sampel (baris) dan 16 kolom (fitur, termasuk ID dan dataset sumber). Setelah langkah *initial data cleaning* dan transformasi target, dataset akan memiliki 920 sampel dan 14 fitur (13 fitur prediktor dan 1 variabel target). Dataset ini bersifat kuantitatif (atau telah dikonversi menjadi numerik) dan memenuhi persyaratan minimal 500 sampel.
+Dataset awal memiliki **1025 sampel (baris)** dan **16 kolom (fitur)**. Setelah langkah *initial data cleaning* dan transformasi target, dataset akan memiliki **920 sampel** dan **14 fitur** (13 fitur prediktor dan 1 variabel target). Dataset ini bersifat kuantitatif (atau telah dikonversi menjadi numerik) dan memenuhi persyaratan minimal 500 sampel.
+
+### Kondisi Data Awal:
+*   **Missing Values:** Data mentah memiliki *missing values* yang direpresentasikan secara tidak standar (misalnya `'?'` atau spasi kosong `''`). Setelah konversi awal, beberapa kolom menunjukkan persentase *missing values* yang signifikan:
+    *   `fbs` dan `exang`: 100% *missing*.
+    *   `ca`: 66.41% *missing*.
+    *   `thal`: 52.83% *missing*.
+    *   `slope`: 33.59% *missing*.
+*   **Invalid Zeros:** Nilai `0` pada `trestbps` (tekanan darah), `chol` (kolesterol), dan `thalch` (detak jantung maksimum) diidentifikasi sebagai *missing values* karena tidak valid secara medis untuk pasien hidup.
+*   **Tidak Ada Duplikat:** Setelah pemeriksaan awal, tidak ditemukan baris duplikat yang identik dalam dataset.
 
 ### Variabel-variabel pada Dataset Penyakit Jantung adalah sebagai berikut:
+*   `id`: (Numerik) ID pasien. (Dihapus selama *data preparation* karena tidak relevan sebagai fitur prediktor).
 *   `age`: (Numerik) Usia pasien dalam tahun.
-*   `sex`: (Numerik) Jenis kelamin pasien (1 = laki-laki, 0 = perempuan).
+*   `sex`: (Kategorikal) Jenis kelamin pasien (`Male`/`Female`).
+*   `dataset`: (Kategorikal) Sumber dataset asli (Cleveland, Hungary, Switzerland, VA Long Beach). (Dihapus selama *data preparation* karena tidak relevan sebagai fitur prediktor).
 *   `cp`: (Kategorikal) Tipe nyeri dada (misalnya `typical angina`, `asymptomatic`, `non-anginal pain`, `atypical angina`).
 *   `trestbps`: (Numerik) Tekanan darah saat istirahat (resting blood pressure) dalam mm Hg.
 *   `chol`: (Numerik) Kolesterol serum (serum cholestoral) dalam mg/dl.
-*   `fbs`: (Numerik) Gula darah puasa (fasting blood sugar) > 120 mg/dl (1 = true, 0 = false).
+*   `fbs`: (Kategorikal) Gula darah puasa (fasting blood sugar) > 120 mg/dl (`TRUE`/`FALSE`).
 *   `restecg`: (Kategorikal) Hasil elektrokardiografi saat istirahat (misalnya `normal`, `st-t abnormality`, `lv hypertrophy`).
 *   `thalch`: (Numerik) Detak jantung maksimum yang dicapai (maximum heart rate achieved).
-*   `exang`: (Numerik) Angina yang diinduksi oleh olahraga (exercise induced angina) (1 = yes, 0 = no).
+*   `exang`: (Kategorikal) Angina yang diinduksi oleh olahraga (exercise induced angina) (`TRUE`/`FALSE`).
 *   `oldpeak`: (Numerik) Depresi ST yang diinduksi oleh olahraga relatif terhadap istirahat.
 *   `slope`: (Kategorikal) Kemiringan segmen ST puncak olahraga (misalnya `upsloping`, `flat`, `downsloping`).
 *   `ca`: (Numerik) Jumlah pembuluh darah utama (0-3) yang diwarnai oleh fluoroskopi.
 *   `thal`: (Kategorikal) Thalassemia (misalnya `normal`, `fixed defect`, `reversable defect`).
+*   `num`: (Numerik) Variabel target asli (0-4, menunjukkan tingkat keparahan penyakit). (Ditransformasi menjadi `target` biner).
 *   `target`: (Numerik - Variabel Target) Keberadaan penyakit jantung (1 = ada penyakit jantung, 0 = tidak ada penyakit jantung).
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-*   **Melakukan beberapa tahapan yang diperlukan untuk memahami data (Exploratory Data Analysis - EDA):**
-    EDA dilakukan untuk memahami karakteristik data, mengidentifikasi pola, *outlier*, dan *missing values*, serta hubungan antar fitur dan dengan variabel target.
+### Exploratory Data Analysis (EDA):
 
-    1.  **Kondisi Data Awal:**
-        *   Data mentah memiliki *missing values* yang direpresentasikan secara tidak standar (misalnya `'?'` atau spasi kosong `''`). Kolom `fbs` dan `exang` menjadi 100% *missing* setelah konversi awal. Kolom `ca` (66.41%), `thal` (52.83%), dan `slope` (33.59%) juga memiliki persentase *missing values* yang sangat tinggi. Nilai `0` pada `trestbps`, `chol`, dan `thalch` yang tidak valid secara medis juga diidentifikasi sebagai *missing values*.
+EDA dilakukan untuk memahami karakteristik data, mengidentifikasi pola, *outlier*, dan *missing values*, serta hubungan antar fitur dan dengan variabel target.
 
-    2.  **Distribusi Variabel Target:**
+1.  **Distribusi Variabel Target:**
 
 
-         ![image](https://github.com/user-attachments/assets/dfb6773f-12c3-4344-b8ee-d6ac4969cdb0)
+     ![image](https://github.com/user-attachments/assets/dfb6773f-12c3-4344-b8ee-d6ac4969cdb0)
 
-        *   Distribusi kelas target (`target`) relatif seimbang: 44.67% pasien tidak memiliki penyakit jantung (`0`) dan 55.33% memiliki penyakit jantung (`1`). Keseimbangan ini baik untuk klasifikasi, meskipun tetap relevan untuk menggunakan metrik `F1-score` dan `ROC AUC`.
-        *   *(Lihat plot `countplot` distribusi target pada Jupyter Notebook untuk visualisasi)*
+    *   Distribusi kelas target (`target`) relatif seimbang: 44.67% pasien tidak memiliki penyakit jantung (`0`) dan 55.33% memiliki penyakit jantung (`1`). Keseimbangan ini baik untuk klasifikasi, meskipun tetap relevan untuk menggunakan metrik `F1-score` dan `ROC AUC`.
 
-    3.  **Distribusi Fitur Numerik dan Kategorikal:**
-
-
-        ![image](https://github.com/user-attachments/assets/392abea8-42a8-4d90-b674-91f5fa26b655)
-
-        
-        *   Fitur-fitur seperti `age` dan `thalch` menunjukkan distribusi yang mendekati normal. `oldpeak` menunjukkan distribusi *zero-inflated*. Kolom `chol` dan `trestbps` memiliki distribusi bervariasi.
-        *   Distribusi fitur kategorikal seperti `cp` (tipe nyeri dada) dan `thal` (thalassemia) menunjukkan frekuensi masing-masing kategori, dengan `asymptomatic` dan `reversable defect` menjadi kategori paling dominan.
-        *   *(Lihat plot `histplot` dan `countplot` distribusi fitur pada Jupyter Notebook untuk visualisasi)*
-
-    4.  **Korelasi Antar Fitur:**
-
-        ![image](https://github.com/user-attachments/assets/961033b1-c83a-4725-9e25-74abf33cad7d)
+2.  **Distribusi Fitur Numerik dan Kategorikal:**
 
 
-        *   Heatmap korelasi menunjukkan bahwa `oldpeak` (0.49), `exang` (0.49), `ca` (0.52), dan `thalch` (-0.42) memiliki korelasi linear yang paling signifikan dengan variabel `target`. Fitur-fitur ini menjadi kandidat prediktor kuat.
-        *   *(Lihat heatmap korelasi pada Jupyter Notebook untuk visualisasi)*
+    ![image](https://github.com/user-attachments/assets/392abea8-42a8-4d90-b674-91f5fa26b655)
 
-    5.  **Hubungan Fitur dengan Target:**
+    *   Fitur-fitur seperti `age` dan `thalch` menunjukkan distribusi yang mendekati normal. `oldpeak` menunjukkan distribusi *zero-inflated*. Kolom `chol` dan `trestbps` memiliki distribusi bervariasi.
+    *   Distribusi fitur kategorikal seperti `cp` (tipe nyeri dada) dan `thal` (thalassemia) menunjukkan frekuensi masing-masing kategori, dengan `asymptomatic` dan `reversable defect` menjadi kategori paling dominan.
+
+3.  **Korelasi Antar Fitur:**
+
+    ![image](https://github.com/user-attachments/assets/961033b1-c83a-4725-9e25-74abf33cad7d)
+
+    *   Heatmap korelasi menunjukkan bahwa `oldpeak` (0.49), `exang` (0.49), `ca` (0.52), dan `thalch` (-0.42) memiliki korelasi linear yang paling signifikan dengan variabel `target`. Fitur-fitur ini menjadi kandidat prediktor kuat.
+
+4.  **Hubungan Fitur dengan Target:**
 
 
-        ![image](https://github.com/user-attachments/assets/21172a9c-6dc4-4e64-8589-352a3177d3c7)
+    ![image](https://github.com/user-attachments/assets/21172a9c-6dc4-4e64-8589-352a3177d3c7)
 
 
-        *   Boxplot memvisualisasikan perbedaan distribusi fitur numerik antara kedua kelompok target. Pasien dengan penyakit jantung (`target=1`) cenderung memiliki nilai `age`, `trestbps`, `chol`, dan `oldpeak` yang lebih tinggi, serta nilai `thalch` yang lebih rendah. Ini mengkonfirmasi *insight* dari korelasi dan memberikan pemahaman visual tentang perbedaan grup.
-        *   *(Lihat boxplot hubungan fitur vs. target pada Jupyter Notebook untuk visualisasi)*
+    *   Boxplot memvisualisasikan perbedaan distribusi fitur numerik antara kedua kelompok target. Pasien dengan penyakit jantung (`target=1`) cenderung memiliki nilai `age`, `trestbps`, `chol`, dan `oldpeak` yang lebih tinggi, serta nilai `thalch` yang lebih rendah. Ini mengkonfirmasi *insight* dari korelasi dan memberikan pemahaman visual tentang perbedaan grup.
 
 ## Data Preparation
 
 Pada bagian ini saya menerapkan teknik *data preparation* yang esensial. Teknik-teknik ini berurutan dan diterapkan secara sistematis.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-
 *   **Menjelaskan proses *data preparation* yang dilakukan dan alasannya:**
 
     1.  **Initial Data Cleaning dan Transformasi Target:**
         *   **Proses:**
-            *   Penggantian nilai non-standar (`'?'`, `''`) dengan `np.nan` di seluruh DataFrame.
+            *   Penggantian nilai non-standar (`'?'`, `''`, `0` pada kolom klinis yang tidak mungkin `0`) dengan `np.nan` di seluruh DataFrame.
             *   Konversi kolom `sex`, `fbs`, `exang` (boolean string) ke numerik (1/0).
             *   Konversi kolom `ca` dan `num` ke numerik (float), dengan `errors='coerce'` untuk menangani konversi yang gagal.
-            *   Penggantian nilai `0` yang tidak valid secara klinis pada `trestbps`, `chol`, dan `thalch` dengan `np.nan`.
-            *   Penghapusan kolom `id` dan `dataset`.
-            *   Transformasi `num` (0-4) menjadi biner `target` (0 atau 1).
-        *   **Alasan:** Ini adalah langkah fundamental untuk membersihkan data mentah, memastikan konsistensi tipe data, dan menyiapkan variabel target sesuai dengan tujuan klasifikasi biner. Nilai non-numerik dan `0` yang tidak valid akan mengganggu perhitungan dan pemodelan.
+            *   Penghapusan kolom `id` dan `dataset` karena tidak relevan untuk pemodelan.
+            *   Transformasi `num` (0-4) menjadi biner `target` (0 = tidak ada penyakit jantung, 1 = ada penyakit jantung).
+        *   **Alasan:** Ini adalah langkah fundamental untuk membersihkan data mentah, memastikan konsistensi tipe data, dan menyiapkan variabel target sesuai dengan tujuan klasifikasi biner. Nilai non-numerik dan `0` yang tidak valid akan mengganggu perhitungan dan pemodelan. Kolom `id` dan `dataset` tidak memberikan informasi prediktif dan dapat menyebabkan *data leakage* jika tidak dihapus.
 
     2.  **Pemisahan Data Latih dan Uji:**
         *   **Proses:** Data dibagi menjadi fitur (`X`) dan target (`y`), lalu dipisahkan menjadi `X_train`, `X_test`, `y_train`, `y_test` dengan proporsi 80% data latih dan 20% data uji menggunakan `train_test_split` (`random_state=42` untuk reproduktifitas). Parameter `stratify=y` digunakan.
@@ -154,50 +146,42 @@ Pada bagian ini saya menerapkan teknik *data preparation* yang esensial. Teknik-
 
 Tahapan ini membahas mengenai model *machine learning* yang digunakan untuk menyelesaikan permasalahan. saya menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan, serta proses pemilihan model terbaik.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
+### 5.1. Algoritma yang Digunakan
 
-*   **Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan:**
+1.  **Logistic Regression**
+    *   **Cara Kerja:** Ini adalah algoritma klasifikasi linear yang menggunakan fungsi logistik (sigmoid) untuk memodelkan probabilitas kelas target. Meskipun disebut "regresi", ini digunakan untuk klasifikasi biner dengan memetakan setiap prediksi ke dalam rentang [0, 1] yang kemudian diinterpretasikan sebagai probabilitas.
+    *   **Kelebihan:** Sederhana, cepat dalam pelatihan dan prediksi, mudah diinterpretasi (melalui koefisien fitur yang menunjukkan pengaruh pada *log-odds*). Baik sebagai model *baseline*.
+    *   **Kekurangan:** Mengasumsikan hubungan linier antara fitur input dan *log-odds* dari variabel target. Performa bisa menurun pada data dengan hubungan non-linear atau yang sangat kompleks.
+    *   **Parameter Tuning (`param_grid`):**
+        *   `classifier__C`: [0.01, 0.1, 1, 10, 100] (Inverse of regularization strength. Smaller values specify stronger regularization.)
+        *   `classifier__solver`: ['liblinear', 'lbfgs'] (Algorithm to use in the optimization problem. 'liblinear' is good for small datasets and L1/L2 regularization. 'lbfgs' is good for larger datasets.)
+    *   **Parameter Terbaik yang Diperoleh:** `{'classifier__C': 0.1, 'classifier__solver': 'liblinear'}`
 
-    1.  **Logistic Regression**
-        *   **Kelebihan:** Sederhana, cepat dalam pelatihan dan prediksi, mudah diinterpretasi (melalui koefisien fitur yang menunjukkan pengaruh pada *log-odds*). Baik sebagai model *baseline*.
-        *   **Kekurangan:** Mengasumsikan hubungan linier antara fitur input dan *log-odds* dari variabel target. Performa bisa menurun pada data dengan hubungan non-linear atau yang sangat kompleks.
+2.  **Random Forest Classifier**
+    *   **Cara Kerja:** Ini adalah algoritma *ensemble* berbasis *bagging* (Bootstrap Aggregating) yang membangun banyak pohon keputusan independen pada subset data pelatihan yang di-bootstrap. Prediksi akhir diperoleh dengan menggabungkan (voting) hasil dari setiap pohon, yang membantu mengurangi *overfitting* dan meningkatkan akurasi serta stabilitas model.
+    *   **Kelebihan:** Model *ensemble* yang sangat kuat, menggabungkan banyak pohon keputusan untuk meningkatkan akurasi dan mengurangi *overfitting*. Mampu menangani hubungan non-linear dan interaksi kompleks antar fitur. Kurang sensitif terhadap *outlier* dan penskalaan fitur. Dapat memberikan indikasi *feature importance*, yang berguna untuk interpretasi.
+    *   **Kekurangan:** Kurang *interpretable* dibandingkan model linier (sering disebut 'black box' karena struktur pohon yang kompleks). Membutuhkan sumber daya komputasi yang lebih besar dan waktu pelatihan yang lebih lama dibandingkan model sederhana.
+    *   **Parameter Tuning (`param_grid`):**
+        *   `classifier__n_estimators`: [100, 200, 300] (Number of trees in the forest.)
+        *   `classifier__max_depth`: [None, 10, 20] (Maximum depth of the tree. `None` means nodes are expanded until all leaves are pure or until all leaves contain less than `min_samples_split` samples.)
+        *   `classifier__min_samples_split`: [2, 5, 10] (Minimum number of samples required to split an internal node.)
+    *   **Parameter Terbaik yang Diperoleh:** `{'classifier__max_depth': None, 'classifier__min_samples_split': 10, 'classifier__n_estimators': 100}`
 
-    2.  **Random Forest Classifier**
-        *   **Kelebihan:** Model *ensemble* yang sangat kuat, menggabungkan banyak pohon keputusan untuk meningkatkan akurasi dan mengurangi *overfitting*. Mampu menangani hubungan non-linear dan interaksi kompleks antar fitur. Kurang sensitif terhadap *outlier* dan penskalaan fitur. Dapat memberikan indikasi *feature importance*, yang berguna untuk interpretasi.
-        *   **Kekurangan:** Kurang *interpretable* dibandingkan model linier (sering disebut 'black box' karena struktur pohon yang kompleks). Membutuhkan sumber daya komputasi yang lebih besar dan waktu pelatihan yang lebih lama dibandingkan model sederhana.
+3.  **LightGBM Classifier**
+    *   **Cara Kerja:** Ini adalah algoritma *gradient boosting* yang menggunakan pohon keputusan sebagai model dasar. LightGBM mengadopsi teknik *Gradient-based One-Side Sampling (GOSS)* untuk memfilter *data instances* yang signifikan dan *Exclusive Feature Bundling (EFB)* untuk menggabungkan fitur-fitur yang saling eksklusif, sehingga sangat efisien dan cepat dalam pelatihan, terutama pada dataset besar.
+    *   **Kelebihan:** Algoritma *gradient boosting* yang sangat efisien dan cepat, terutama pada dataset besar. Menawarkan kinerja prediktif yang superior, seringkali menjadi salah satu algoritma terbaik untuk data tabular. Secara bawaan dapat menangani *missing values* dan fitur kategorikal.
+    *   **Kekurangan:** Sangat rentan terhadap *overfitting* jika *hyperparameter* tidak di-tuning dengan benar. Lebih kompleks dan kurang *interpretable* (model 'black box' lainnya).
+    *   **Parameter Tuning (`param_grid`):**
+        *   `classifier__n_estimators`: [100, 200, 300] (Number of boosting rounds.)
+        *   `classifier__learning_rate`: [0.01, 0.05, 0.1] (Shrinks the contribution of each tree. A lower learning rate usually requires more `n_estimators`.)
+        *   `classifier__num_leaves`: [20, 31, 40] (Maximum number of leaves in one tree. Controls model complexity.)
+    *   **Parameter Terbaik yang Diperoleh:** `{'classifier__learning_rate': 0.05, 'classifier__n_estimators': 200, 'classifier__num_leaves': 31}`
 
-    3.  **LightGBM Classifier**
-        *   **Kelebihan:** Algoritma *gradient boosting* yang sangat efisien dan cepat, terutama pada dataset besar. Menawarkan kinerja prediktif yang superior, seringkali menjadi salah satu algoritma terbaik untuk data tabular. Secara bawaan dapat menangani *missing values* dan fitur kategorikal.
-        *   **Kekurangan:** Sangat rentan terhadap *overfitting* jika *hyperparameter* tidak di-tuning dengan benar. Lebih kompleks dan kurang *interpretable* (model 'black box' lainnya).
+### 5.2. Proses Hyperparameter Tuning
 
-*   **Jelaskan proses *improvement* yang dilakukan (Hyperparameter Tuning):**
-
-    *   **Proses:** Setiap model diintegrasikan ke dalam sebuah `Pipeline` lengkap dengan langkah-langkah *preprocessing* yang telah didefinisikan (`preprocessor` mencakup imputasi, *scaling*, dan *encoding*). *Hyperparameter tuning* dilakukan menggunakan `GridSearchCV` dari scikit-learn. `GridSearchCV` secara sistematis mencoba setiap kombinasi *hyperparameter* yang ditentukan dalam `param_grid`.
-    *   **Cross-Validation:** saya menggunakan 5-Fold *Cross-Validation* (`cv=5`), yang membagi data pelatihan menjadi 5 bagian, melatih model 5 kali (masing-masing menggunakan 4 bagian untuk pelatihan dan 1 bagian untuk validasi) dan merata-ratakan skornya. Ini memberikan estimasi performa model yang lebih *robust* dan mengurangi varians, dibandingkan hanya menggunakan satu *train-validation split*.
-    *   **Metrik Penilaian (`scoring`):** `scoring='f1'` dipilih sebagai metrik utama untuk *tuning*. `F1-score` sangat relevan dalam konteks medis karena menyeimbangkan `Precision` dan `Recall`, penting untuk meminimalkan baik *false positives* maupun *false negatives*.
-    *   **Parameter yang Dicari (`param_grids`):**
-        *   **Logistic Regression:** `classifier__C` (kekuatan regularisasi), `classifier__solver` (algoritma optimasi).
-        *   **Random Forest:** `classifier__n_estimators` (jumlah pohon), `classifier__max_depth` (kedalaman maksimum pohon), `classifier__min_samples_split` (minimum sampel untuk membagi *node*).
-        *   **LightGBM:** `classifier__n_estimators` (jumlah *boosting rounds*), `classifier__learning_rate` (ukuran langkah kontribusi setiap pohon), `classifier__num_leaves` (jumlah maksimum daun per pohon).
-
-*   **Pilih model terbaik sebagai solusi dan jelaskan mengapa:**
-
-    Setelah melatih dan melakukan *tuning* untuk semua model, saya mengevaluasi setiap model terbaik yang telah di-tuning pada data uji (`X_test`, `y_test`).
-
-    ```
-    Performa Model Terbaik pada Data Uji:
-
-                         Accuracy  Precision  Recall  F1-Score  ROC AUC
-    Model                                                              
-    Logistic Regression    0.7880     0.7788  0.8627    0.8186   0.8928
-    Random Forest          0.8152     0.7881  0.9118    0.8455   0.9002
-    LightGBM               0.8424     0.8349  0.8922    0.8626   0.8782
-    ```
-
-    Berdasarkan hasil evaluasi pada data uji, model **LightGBM Classifier** menunjukkan performa terbaik secara keseluruhan, terutama pada metrik `F1-Score` (0.8626) dan `ROC AUC` (0.8782). Oleh karena itu, LightGBM Classifier dipilih sebagai model terbaik untuk menyelesaikan permasalahan ini.
-
-    **Alasan Pemilihan:**
-    LightGBM dipilih karena kombinasinya antara efisiensi (waktu pelatihan yang relatif cepat) dan performa prediktif yang tinggi. Model berbasis *gradient boosting* seperti LightGBM mampu menangkap pola data yang kompleks lebih baik daripada model linier atau *ensemble* berbasis *bagging* seperti Random Forest, menghasilkan metrik `F1-Score` dan `ROC AUC` yang lebih baik pada data uji. Ini menunjukkan kemampuannya yang unggul dalam membedakan antara pasien sehat dan sakit, yang merupakan prioritas utama dalam konteks medis.
+*   **Proses:** Setiap model diintegrasikan ke dalam sebuah `Pipeline` lengkap dengan langkah-langkah *preprocessing* yang telah didefinisikan (`preprocessor` mencakup imputasi, *scaling*, dan *encoding*). *Hyperparameter tuning* dilakukan menggunakan `GridSearchCV` dari scikit-learn. `GridSearchCV` secara sistematis mencoba setiap kombinasi *hyperparameter* yang ditentukan dalam `param_grid` untuk setiap model.
+*   **Cross-Validation:** Saya menggunakan 5-Fold *Cross-Validation* (`cv=5`), yang membagi data pelatihan menjadi 5 bagian, melatih model 5 kali (masing-masing menggunakan 4 bagian untuk pelatihan dan 1 bagian untuk validasi) dan merata-ratakan skornya. Ini memberikan estimasi performa model yang lebih *robust* dan mengurangi varians, dibandingkan hanya menggunakan satu *train-validation split*.
+*   **Metrik Penilaian (`scoring`):** `scoring='f1'` dipilih sebagai metrik utama untuk *tuning*. `F1-score` sangat relevan dalam konteks medis karena menyeimbangkan `Precision` dan `Recall`, penting untuk meminimalkan baik *false positives* maupun *false negatives*.
 
 ## Evaluation
 
@@ -206,7 +190,6 @@ Pada bagian ini, saya menyebutkan metrik evaluasi yang digunakan dan menjelaskan
 ### Metrik Evaluasi yang Digunakan
 Untuk mengukur kinerja model klasifikasi dalam memprediksi penyakit jantung, beberapa metrik evaluasi kunci telah digunakan: `Accuracy`, `Precision`, `Recall`, `F1-Score`, `Confusion Matrix`, dan `ROC AUC`.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
 *   **Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja:**
 
     1.  **Accuracy (Akurasi):**
@@ -236,27 +219,36 @@ Untuk mengukur kinerja model klasifikasi dalam memprediksi penyakit jantung, beb
 
 ### Hasil Proyek Berdasarkan Metrik Evaluasi
 
-Model terbaik yang terpilih adalah **LightGBM Classifier**. Berikut adalah ringkasan performanya pada data uji:
+Setelah melatih dan melakukan *tuning* untuk semua model, saya mengevaluasi setiap model terbaik yang telah di-tuning pada data uji (`X_test`, `y_test`).
 
-*   **Model Terpilih:** LightGBM Classifier
-*   **Accuracy:** 0.8424
-*   **Precision:** 0.8349
-*   **Recall:** 0.8922
-*   **F1-Score:** 0.8626
-*   **ROC AUC:** 0.8782
+**Performa Model Terbaik pada Data Uji:**
 
-### Classification Report:
+| Model                 | Accuracy | Precision | Recall | F1-Score | ROC AUC |
+| :-------------------- | :------- | :-------- | :----- | :------- | :------ |
+| Logistic Regression   | 0.7880   | 0.7788    | 0.8627 | 0.8186   | 0.8928  |
+| Random Forest         | 0.8152   | 0.7881    | 0.9118 | 0.8455   | 0.9002  |
+| LightGBM              | 0.8424   | 0.8349    | 0.8922 | 0.8626   | 0.8782  |
 
-```
-              precision    recall  f1-score   support
+Berdasarkan hasil evaluasi pada data uji, model **LightGBM Classifier** menunjukkan performa terbaik secara keseluruhan, terutama pada metrik `F1-Score` (0.8626) dan `ROC AUC` (0.8782). Oleh karena itu, LightGBM Classifier dipilih sebagai model terbaik untuk menyelesaikan permasalahan ini.
 
-           0       0.85      0.78      0.82        82
-           1       0.83      0.89      0.86       102
+**Alasan Pemilihan:**
+LightGBM dipilih karena kombinasinya antara efisiensi (waktu pelatihan yang relatif cepat) dan performa prediktif yang tinggi. Model berbasis *gradient boosting* seperti LightGBM mampu menangkap pola data yang kompleks lebih baik daripada model linier atau *ensemble* berbasis *bagging* seperti Random Forest, menghasilkan metrik `F1-Score` dan `ROC AUC` yang lebih baik pada data uji. Ini menunjukkan kemampuannya yang unggul dalam membedakan antara pasien sehat dan sakit, yang merupakan prioritas utama dalam konteks medis.
 
-    accuracy                           0.84       184
-   macro avg       0.84      0.84      0.84       184
-weighted avg       0.84      0.84      0.84       184
-```
+### Classification Report Model Terbaik (LightGBM):
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.85      | 0.78   | 0.82     | 82      |
+| 1     | 0.83      | 0.89   | 0.86     | 102     |
+
+|        | Precision | Recall | F1-Score | Support |
+|--------|-----------|--------|----------|---------|
+| Accuracy    |         |        | 0.84     | 184     |
+| Macro avg   | 0.84    | 0.84   | 0.84     | 184     |
+| Weighted avg| 0.84    | 0.84   | 0.84     | 184     |
+
+
+
 
 ### Visualisasi Confusion Matrix
 ![image](https://github.com/user-attachments/assets/c8550c16-65b3-4447-a691-fa6b83f0c558)
@@ -275,8 +267,22 @@ weighted avg       0.84      0.84      0.84       184
 
 *   **Interpretasi:** Kurva ROC berada jauh di atas garis acak, dan nilai AUC sebesar 0.8782. Ini mengindikasikan bahwa model memiliki kemampuan diskriminasi yang sangat baik dalam membedakan antara pasien dengan dan tanpa penyakit jantung di berbagai *threshold* klasifikasi. Semakin tinggi AUC, semakin baik model dalam membedakan kedua kelas tersebut.
 
-### Diskusi Hasil:
-Model LightGBM Classifier menunjukkan performa yang sangat baik dalam memprediksi penyakit jantung. F1-score yang tinggi, bersama dengan Recall yang kuat dan Precision yang baik, menunjukkan keseimbangan yang optimal antara kemampuan model untuk mendeteksi semua kasus positif dan menghindari kesalahan prediksi positif. ROC AUC yang tinggi juga mengkonfirmasi kemampuan diskriminasi model yang kuat. Dalam konteks medis, `Recall` yang tinggi sangat penting karena kegagalan mendeteksi penyakit jantung (*false negative*) dapat memiliki konsekuensi yang jauh lebih serius daripada diagnosis positif palsu (*false positive*).
+### Analisis Feature Importance untuk Model LightGBM:
+
+| Feature                   | Importance |
+| :------------------------ | :--------- |
+| num__chol                 | 1091       |
+| num__age                  | 1041       |
+| num__thalch               | 1018       |
+| num__trestbps             | 750        |
+| num__oldpeak              | 562        |
+| cat__restecg_normal       | 180        |
+| cat__cp_asymptomatic      | 142        |
+| cat__cp_atypical angina   | 93         |
+| cat__sex_0                | 90         |
+| cat__restecg_st-t abnormality | 87         |
+
+**Interpretasi:** Fitur-fitur seperti kolesterol, usia, detak jantung maksimum, dan tekanan darah istirahat adalah yang paling berkontribusi pada prediksi model. Ini sesuai dengan pengetahuan medis tentang faktor risiko penyakit jantung.
 
 ## 7. 📝 Conclusion & Next Step
 
@@ -288,7 +294,7 @@ Proyek ini telah berhasil mengembangkan model *machine learning* untuk prediksi 
 
 Selama proses pengerjaan proyek, beberapa *insight* penting berhasil diidentifikasi:
 
-*   **Kualitas Data Awal:** Dataset awal memiliki tantangan dalam hal *missing values* yang tersebar di beberapa kolom, direpresentasikan dalam berbagai format non-standar (`?`, `0`, atau spasi kosong). Penanganan awal yang teliti (mengubah ke `NaN`, mengonversi tipe data, dan menghapus kolom tidak relevan) sangat esensial untuk validitas analisis dan pemodelan.
+*   **Kualitas Data Awal:** Dataset awal memiliki tantangan dalam hal *missing values* yang tersebar di beberapa kolom, direpresentasikan dalam berbagai format non-standar (`?`, `0`, atau spasi kosong `''`). Penanganan awal yang teliti (mengubah ke `NaN`, mengonversi tipe data, dan menghapus kolom tidak relevan) sangat esensial untuk validitas analisis dan pemodelan.
 *   **Ketidakseimbangan Kelas Ringan:** Meskipun ada *class imbalance* ringan pada variabel target (sekitar 55.33% kelas positif dan 44.67% kelas negatif), pemilihan metrik `F1-score` (yang menyeimbangkan *Precision* dan *Recall*) untuk *hyperparameter tuning* dan evaluasi akhir sangat tepat, memastikan model tidak hanya akurat secara keseluruhan tetapi juga efektif dalam mendeteksi kedua kelas.
 *   **Fitur Kritis:** Analisis *feature importance* dari model LightGBM menunjukkan bahwa `cholesterol (chol)`, `age`, `thalch` (detak jantung maksimum), dan `trestbps` (tekanan darah saat istirahat) adalah fitur-fitur numerik yang paling berpengaruh terhadap prediksi penyakit jantung. Di antara fitur kategorikal, `cp_asymptomatic` (tipe nyeri dada asimptomatik) dan `thal_reversable defect` (thalassemia jenis *reversable defect*) juga memiliki kontribusi signifikan. Ini memberikan validasi klinis terhadap faktor-faktor risiko yang sudah dikenal.
 *   **Efektivitas Optimasi Model:** Proses *hyperparameter tuning* menggunakan `GridSearchCV` secara signifikan meningkatkan performa model terbaik dibandingkan dengan *baseline* awal. Perbandingan antar model juga menunjukkan bahwa LightGBM, sebagai algoritma *gradient boosting*, unggul dalam menangani kompleksitas data dan mencapai metrik `F1-score` serta `ROC AUC` yang lebih tinggi dibandingkan Logistic Regression dan Random Forest.
@@ -311,4 +317,3 @@ Model yang dikembangkan dalam proyek ini menunjukkan performa prediktif yang **s
 **Namun, untuk implementasi klinis di dunia nyata**, model ini masih memerlukan validasi lebih lanjut dan pertimbangan etika yang cermat. Uji coba dengan data pasien yang tidak bias, validasi menyeluruh oleh para ahli medis, dan persetujuan dari badan regulasi kesehatan adalah langkah-langkah yang tidak dapat diabaikan. Aspek privasi dan keamanan data pasien harus selalu menjadi prioritas utama.
 
 Dengan validasi yang ketat dan adaptasi yang tepat berdasarkan *feedback* dari para profesional medis, model ini memiliki **potensi besar** untuk menjadi alat pendukung keputusan yang berharga dalam skrining dini, manajemen risiko, dan peningkatan kualitas perawatan pasien penyakit jantung.
-
