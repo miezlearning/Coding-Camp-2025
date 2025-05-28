@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Muhammad Alif
+# Laporan Proyek Machine Learning Terapan - Muhammad Alif
 
 ## Project Overview
 
@@ -95,29 +95,28 @@ Beberapa temuan dari EDA:
     *   Rating rendah (0.5 - 2.5) lebih jarang diberikan, menunjukkan kecenderungan pengguna untuk lebih sering merating film yang mereka sukai atau setidaknya tidak terlalu buruk.
     *   *Insight*: Model rekomendasi perlu mempertimbangkan bahwa pengguna mungkin lebih vokal tentang film yang mereka nikmati.
 
-    ![Distribusi Rating](link_ke_gambar_distribusi_rating.png) *(Ganti dengan path gambar jika ada)*
-
+    ![Distribusi Rating](https://github.com/miezlearning/Coding-Camp-2025/blob/master/Machine%20Learning%20Terapan/Proyek%20Besar/Assets/dis_movrating.png?raw=true)
 2.  **Jumlah Rating per Pengguna**:
     *   Distribusi jumlah rating per pengguna sangat skewed ke kanan.
     *   Sebagian besar pengguna (lebih dari 50%) memberikan kurang dari ~70 rating.
     *   Beberapa pengguna sangat aktif, dengan satu pengguna memberikan hingga ~2700 rating.
     *   *Insight*: Ada variasi besar dalam aktivitas pengguna. Model Collaborative Filtering mungkin lebih akurat untuk pengguna dengan banyak rating, dan perlu strategi khusus (seperti Content-Based) untuk pengguna dengan sedikit histori (cold-start).
 
-    ![Distribusi Rating per User](link_ke_gambar_rating_per_user.png) *(Ganti dengan path gambar jika ada)*
+    ![Distribusi Rating per User](https://github.com/miezlearning/Coding-Camp-2025/blob/master/Machine%20Learning%20Terapan/Proyek%20Besar/Assets/dis_rat_user.png?raw=true)
 
 3.  **Jumlah Rating per Film**:
     *   Distribusi ini juga skewed. Banyak film yang hanya mendapatkan sedikit rating (lebih dari 50% film memiliki kurang dari ~3 rating).
     *   Beberapa film sangat populer dan mendapatkan ratusan rating.
     *   *Insight*: Film dengan sedikit rating mungkin sulit direkomendasikan oleh Collaborative Filtering karena kurangnya data. Rekomendasi mungkin cenderung bias ke film populer.
 
-    ![Distribusi Rating per Film](link_ke_gambar_rating_per_film.png) *(Ganti dengan path gambar jika ada)*
+    ![Distribusi Rating per Film](https://github.com/miezlearning/Coding-Camp-2025/blob/master/Machine%20Learning%20Terapan/Proyek%20Besar/Assets/dis_rating_mov.png?raw=true)
 
 4.  **Genre Film Terpopuler**:
     *   Genre Drama dan Comedy adalah yang paling dominan dalam dataset, diikuti oleh Thriller dan Action.
     *   Genre seperti Documentary, IMAX, atau Film-Noir lebih jarang muncul.
     *   *Insight*: Model Content-Based akan memiliki banyak data untuk genre populer, tetapi perlu diperhatikan agar genre minoritas juga mendapat kesempatan direkomendasikan untuk menjaga keberagaman.
 
-    ![Genre Terpopuler](link_ke_gambar_genre_populer.png) *(Ganti dengan path gambar jika ada)*
+    ![Genre Terpopuler](https://github.com/miezlearning/Coding-Camp-2025/blob/master/Machine%20Learning%20Terapan/Proyek%20Besar/Assets/download%20(1).png?raw=true) 
 
 ## Data Preparation
 Tahap Data Preparation bertujuan untuk membersihkan dan mentransformasi data agar siap digunakan oleh model sistem rekomendasi. Proses ini krusial karena kualitas data input sangat mempengaruhi kualitas output model.
